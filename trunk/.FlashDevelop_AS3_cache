@@ -1,0 +1,11 @@
+
+#file-cache C:\Workspace\projects\natelib\src\com\mobsword\natelib\data\UserData.as
+package com.mobsword.natelib.data{public class UserData{public var email : String;public var password : String;public var state : String;public var nick : String;public function UserData ();}}
+#file-cache C:\Workspace\projects\natelib\src\com\mobsword\natelib\data\Message.as
+package com.mobsword.natelib.data{public class Message{public var rid : int;public var command : String;public var param : Array;public var isBinary : Boolean;public var isText : Boolean;public function toString () : String;}}
+#file-cache C:\Workspace\projects\natelib\src\com\mobsword\natelib\managers\Manager.as
+package com.mobsword.natelib.managers{public class Manager{public function Manager ();}}
+#file-cache C:\Workspace\projects\natelib\src\com\mobsword\natelib\managers\ConnectionManager.as
+package com.mobsword.natelib.managers{import com.mobsword.natelib.data.Message;public class ConnectionManager implements Manager{public function ConnectionManager ();public function open (host:String, port:int) : void;public function send (message:Message) : void;public function close () : void;}}
+#file-cache C:\Workspace\projects\natelib\src\com\mobsword\natelib\objecs\Account.as
+package com.mobsword.natelib.objecs{import com.mobsword.natelib.data.UserData;import flash.events.EventDispatcher;public class Account extends EventDispatcher{public var data : UserData;public function Account ();private function constructor () : void;private function listener () : void;public function online (email:String = null, password:String = null, state:String = null) : void;public function offline () : void;public function busy () : void;public function away () : void;public function phone () : void;public function meet () : void;public function hidden () : void;}}
