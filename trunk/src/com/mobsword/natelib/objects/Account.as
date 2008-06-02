@@ -1,4 +1,4 @@
-/**
+ï»¿/**
 * ...
 * @author Default
 * @version 0.1
@@ -6,7 +6,7 @@
 
 package com.mobsword.natelib.objects
 {
-	import com.mobsword.natelib.data.UserData;
+	import com.mobsword.natelib.data.AccountData;
 	import com.mobsword.natelib.managers.ConnectionManager;
 	import com.mobsword.natelib.managers.FriendManager;
 	import com.mobsword.natelib.managers.GroupManager;
@@ -14,9 +14,9 @@ package com.mobsword.natelib.objects
 	import flash.events.EventDispatcher;
 
 	/**
-	 * »ç¿ëÀÚ °èÁ¤ Å¬·¡½ºÀÌ´Ù.
-	 * »ç¿ëÀÚ°¡ Á¢¼ÓÇÏ°íÀÚ ÇÏ´Â °èÁ¤À» ³ªÅ¸³½´Ù.
-	 * Ä£±¸, ±×·ì, °èÁ¤ °ü¸®¸¦ ÀÌ Å¬·¡½º¸¦ ÅëÇØ¼­ ÇÒ ¼ö ÀÖ´Ù.
+	 * ì‚¬ìš©ì ê³„ì • í´ë˜ìŠ¤ì´ë‹¤.
+	 * ì‚¬ìš©ìê°€ ì ‘ì†í•˜ê³ ì í•˜ëŠ” ê³„ì •ì„ ë‚˜íƒ€ë‚¸ë‹¤.
+	 * ì¹œêµ¬, ê·¸ë£¹, ê³„ì • ê´€ë¦¬ë¥¼ ì´ í´ë˜ìŠ¤ë¥¼ í†µí•´ì„œ í•  ìˆ˜ ìˆë‹¤.
 	 */
 	public class Account extends EventDispatcher
 	{
@@ -27,7 +27,7 @@ package com.mobsword.natelib.objects
 		public	var sm	:SessionManager;
 
 		/**
-		 * »ı¼ºÀÚ
+		 * ìƒì„±ì
 		 */
 		public	function Account()
 		{
@@ -51,11 +51,11 @@ package com.mobsword.natelib.objects
 		}
 		
 		/**
-		 * ³×ÀÌÆ®¿Â¿¡ Á¢¼ÓÇÏ±â À§ÇÑ ¸Ş¼Òµå.
+		 * ë„¤ì´íŠ¸ì˜¨ì— ì ‘ì†í•˜ê¸° ìœ„í•œ ë©”ì†Œë“œ.
 		 * 
-		 * @param	email		»ç¿ëÀÚ ¾ÆÀÌµğ
-		 * @param	password	ÆĞ½º¿öµå
-		 * @param	state		Á¢¼Ó½Ã »ç¿ëÀÚ »óÅÂ
+		 * @param	email		ì‚¬ìš©ì ì•„ì´ë””
+		 * @param	password	íŒ¨ìŠ¤ì›Œë“œ
+		 * @param	state		ì ‘ì†ì‹œ ì‚¬ìš©ì ìƒíƒœ
 		 */
 		public	function online(email:String, password:String, state:String):void
 		{
@@ -65,8 +65,8 @@ package com.mobsword.natelib.objects
 		}
 
 		/**
-		 * ¼­¹ö¿ÍÀÇ Á¢¼ÓÀ» ²÷±â À§ÇÑ ¸Ş¼Òµå.
-		 * Á¢¼ÓÀÌ ²÷±è°ú µ¿½Ã¿¡ Ä£±¸¸ñ·Ï, ±×·ì¸ñ·Ï, ¼¼¼Ç¸ñ·ÏµîÀÌ ÃÊ±âÈ­µÈ´Ù.
+		 * ì„œë²„ì™€ì˜ ì ‘ì†ì„ ëŠê¸° ìœ„í•œ ë©”ì†Œë“œ.
+		 * ì ‘ì†ì´ ëŠê¹€ê³¼ ë™ì‹œì— ì¹œêµ¬ëª©ë¡, ê·¸ë£¹ëª©ë¡, ì„¸ì…˜ëª©ë¡ë“±ì´ ì´ˆê¸°í™”ëœë‹¤.
 		 * 
 		 * @see	hidden
 		 */
@@ -76,7 +76,7 @@ package com.mobsword.natelib.objects
 		}
 		
 		/**
-		 * »ç¿ëÀÚÀÇ »óÅÂ¸¦ '¹Ù»İ'À¸·Î º¯°æÇÑ´Ù.
+		 * ì‚¬ìš©ìì˜ ìƒíƒœë¥¼ 'ë°”ì¨'ìœ¼ë¡œ ë³€ê²½í•œë‹¤.
 		 */
 		public	function busy():void
 		{
@@ -84,7 +84,7 @@ package com.mobsword.natelib.objects
 		}
 		
 		/**
-		 * »ç¿ëÀÚÀÇ »óÅÂ¸¦ 'ÀÚ¸®ºñ¿ò'À¸·Î º¯°æÇÑ´Ù.
+		 * ì‚¬ìš©ìì˜ ìƒíƒœë¥¼ 'ìë¦¬ë¹„ì›€'ìœ¼ë¡œ ë³€ê²½í•œë‹¤.
 		 */
 		public	function away():void
 		{
@@ -92,7 +92,7 @@ package com.mobsword.natelib.objects
 		}
 		
 		/**
-		 * »ç¿ëÀÚÀÇ »óÅÂ¸¦ 'ÅëÈ­Áß'À¸·Î º¯°æÇÑ´Ù.
+		 * ì‚¬ìš©ìì˜ ìƒíƒœë¥¼ 'í†µí™”ì¤‘'ìœ¼ë¡œ ë³€ê²½í•œë‹¤.
 		 */
 		public	function phone():void
 		{
@@ -101,7 +101,7 @@ package com.mobsword.natelib.objects
 		
 		
 		/**
-		 * »ç¿ëÀÚÀÇ »óÅÂ¸¦ 'È¸ÀÇÁß'À¸·Î º¯°æÇÑ´Ù.
+		 * ì‚¬ìš©ìì˜ ìƒíƒœë¥¼ 'íšŒì˜ì¤‘'ìœ¼ë¡œ ë³€ê²½í•œë‹¤.
 		 */
 		public	function meet():void
 		{
@@ -109,8 +109,8 @@ package com.mobsword.natelib.objects
 		}
 		
 		/**
-		 * »ç¿ëÀÚÀÇ »óÅÂ¸¦ '¿ÀÇÁ¶óÀÎ'À¸·Î º¯°æÇÑ´Ù.
-		 * ¸ğµç Ä£±¸ ¸ñ·ÏÀÇ »ó´ë¿¡°Ô '¿ÀÇÁ¶óÀÎ'À¸·Î º¸ÀÌÁö¸¸ Á¢¼ÓÀÌ ²÷±ä »óÅÂ´Â ¾Æ´Ï´Ù.
+		 * ì‚¬ìš©ìì˜ ìƒíƒœë¥¼ 'ì˜¤í”„ë¼ì¸'ìœ¼ë¡œ ë³€ê²½í•œë‹¤.
+		 * ëª¨ë“  ì¹œêµ¬ ëª©ë¡ì˜ ìƒëŒ€ì—ê²Œ 'ì˜¤í”„ë¼ì¸'ìœ¼ë¡œ ë³´ì´ì§€ë§Œ ì ‘ì†ì´ ëŠê¸´ ìƒíƒœëŠ” ì•„ë‹ˆë‹¤.
 		 * 
 		 * @see offline
 		 */
@@ -120,7 +120,7 @@ package com.mobsword.natelib.objects
 		}
 		
 		/**
-		 * »õ·Î¿î ±×·ìÀ» Ãß°¡ÇÑ´Ù.
+		 * ìƒˆë¡œìš´ ê·¸ë£¹ì„ ì¶”ê°€í•œë‹¤.
 		 * 
 		 * @see Group.remove
 		 */
@@ -130,7 +130,7 @@ package com.mobsword.natelib.objects
 		}
 		
 		/**
-		 * »õ·Î¿î Ä£±¸¸¦ Ãß°¡ÇÑ´Ù.
+		 * ìƒˆë¡œìš´ ì¹œêµ¬ë¥¼ ì¶”ê°€í•œë‹¤.
 		 * 
 		 * @see Friend.remove
 		 */
