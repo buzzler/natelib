@@ -7,11 +7,19 @@
 package com.mobsword.natelib.objecs
 {
 	import com.mobsword.natelib.data.UserData;
+	import com.mobsword.natelib.managers.ConnectionManager;
+	import com.mobsword.natelib.managers.FriendManager;
+	import com.mobsword.natelib.managers.GroupManager;
+	import com.mobsword.natelib.managers.SessionManager;
 	import flash.events.EventDispatcher;
 
 	public class Account extends EventDispatcher
 	{
-		public	var data:UserData;
+		public	var data:AccountData;
+		public	var cm	:ConnectionManager;
+		public	var gm	:GroupManager;
+		public	var fm	:FriendManager;
+		public	var sm	:SessionManager;
 
 		public	function Account()
 		{
@@ -22,7 +30,11 @@ package com.mobsword.natelib.objecs
 		
 		private	function constructor():void
 		{
-			data = new UserData();
+			data	= new AccountData();
+			cm		= new ConnectionManager();
+			gm		= new GroupManager();
+			fm		= new FriendManager();
+			sm		= new SessionManager();
 		}
 		
 		private function listener():void
@@ -63,6 +75,16 @@ package com.mobsword.natelib.objecs
 		}
 		
 		public	function hidden():void
+		{
+			;
+		}
+		
+		public	function addGroup():void
+		{
+			;
+		}
+		
+		public	function addFriend():void
 		{
 			;
 		}

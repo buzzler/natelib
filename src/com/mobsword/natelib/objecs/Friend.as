@@ -12,38 +12,38 @@ package com.mobsword.natelib.objecs
 		{
 			;
 		}
-		
+
 		public	function open():void
 		{
 			;
 		}
-		
+
 		public	function close():void
 		{
 			;
 		}
-		
+
+		public	function invite(s:Session):void
+		{
+			;
+		}
+
 		public	function block():void
 		{
 			;
 		}
-		
+
 		public	function unblock():void
 		{
 			;
 		}
-		
-		public	function add():void
-		{
-			;
-		}
-		
+
 		public	function remove():void
 		{
 			;
 		}
-		
-		public	function move():void
+
+		public	function move(g:Group):void
 		{
 			;
 		}
