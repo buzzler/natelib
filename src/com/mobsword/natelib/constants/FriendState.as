@@ -7,12 +7,12 @@ package com.mobsword.natelib.constants
 	*/
 	public class FriendState
 	{
-		public	const ONLINE	:String = 'O';
-		public	const OFFLINE	:String = 'F';
-		public	const AWAY		:String = 'A';
-		public	const BUSY		:String = 'B';
-		public	const PHONE		:String = 'P';
-		public	const MEET		:String = 'M';
+		public	static const ONLINE	:String = 'O';
+		public	static const OFFLINE	:String = 'F';
+		public	static const AWAY		:String = 'A';
+		public	static const BUSY		:String = 'B';
+		public	static const PHONE		:String = 'P';
+		public	static const MEET		:String = 'M';
 	}
 	
 }
