@@ -7,7 +7,7 @@
 package com.mobsword.natelib.managers
 {
 	import com.mobsword.natelib.data.Message;
-	public class ConnectionManager implements Manager
+	public class ConnectionManager extends Manager
 	{
 		public function ConnectionManager()
 		{

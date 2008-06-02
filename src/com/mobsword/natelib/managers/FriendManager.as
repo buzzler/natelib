@@ -5,7 +5,7 @@ package com.mobsword.natelib.managers
 	* ...
 	* @author Default
 	*/
-	public class FriendManager
+	public class FriendManager extends Manager
 	{
 		
 		public	function FriendManager()
