@@ -1,5 +1,6 @@
 package com.mobsword.natelib.comm
 {
+	import com.mobsword.natelib.constants.Command;
 	
 	/**
 	* ...
