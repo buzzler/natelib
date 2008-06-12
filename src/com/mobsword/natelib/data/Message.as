@@ -13,7 +13,12 @@ package com.mobsword.natelib.data
 		public	var param	:Array;
 		public	var isBinary:Boolean;
 		public	var isText	:Boolean;
-		
+
+		public	function Message():void
+		{
+			;
+		}
+
 		public	function toString():String
 		{
 			var result:Array = new Array();
