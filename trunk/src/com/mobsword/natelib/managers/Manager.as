@@ -6,11 +6,15 @@
 
 package com.mobsword.natelib.managers
 {
+	import com.mobsword.natelib.objects.Account;
+
 	public class Manager
 	{
-		public function Manager()
+		public	var account:Account;
+
+		public	function Manager(a:Account)
 		{
-			super();
+			account = a;
 		}
 		
 	}

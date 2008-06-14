@@ -7,9 +7,11 @@
 package com.mobsword.natelib.objects
 {
 	import com.mobsword.natelib.data.AccountData;
+	import com.mobsword.natelib.events.Observer;
 	import com.mobsword.natelib.managers.ConnectionManager;
 	import com.mobsword.natelib.managers.FriendManager;
 	import com.mobsword.natelib.managers.GroupManager;
+	import com.mobsword.natelib.managers.MessageManager;
 	import com.mobsword.natelib.managers.SessionManager;
 	import flash.events.EventDispatcher;
 
@@ -20,10 +22,12 @@ package com.mobsword.natelib.objects
 	 */
 	public class Account extends EventDispatcher
 	{
-		public	var data:AccountData;
-		public	var gm	:GroupManager;
-		public	var fm	:FriendManager;
-		public	var sm	:SessionManager;
+		public	var data	:AccountData;
+		public	var observer:Observer;
+		public	var gm		:GroupManager;
+		public	var fm		:FriendManager;
+		public	var sm		:SessionManager;
+		public	var mm		:MessageManager;
 
 		/**
 		 * 생성자
@@ -38,9 +42,11 @@ package com.mobsword.natelib.objects
 		private	function constructor():void
 		{
 			data	= new AccountData();
-			gm		= new GroupManager();
-			fm		= new FriendManager();
-			sm		= new SessionManager();
+			observer= new Observer();
+			gm		= new GroupManager(this);
+			fm		= new FriendManager(this);
+			sm		= new SessionManager(this);
+			mm		= new MessageManager(this);
 		}
 		
 		private function listener():void

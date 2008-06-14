@@ -14,6 +14,7 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="." />
+    <class path="..\..\..\api\as3corelib\src" />
   </classpaths>
   <!-- Build options -->
   <build>
