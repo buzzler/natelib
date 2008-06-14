@@ -7,7 +7,8 @@ package com.mobsword.natelib.data
 	*/
 	public class GroupData
 	{
-		
+		public	var version:String;
+
 		public function GroupData()
 		{
 			;

@@ -1,6 +1,8 @@
 package com.mobsword.natelib.managers
 {
+	import com.mobsword.natelib.data.GroupData;
 	import com.mobsword.natelib.managers.Manager;
+	import com.mobsword.natelib.objects.Account;
 	
 	/**
 	* ...
@@ -8,9 +10,12 @@ package com.mobsword.natelib.managers
 	*/
 	public class GroupManager extends Manager
 	{
-		public	function GroupManager()
+		public	var data:GroupData;
+
+		public	function GroupManager(a:Account)
 		{
-			;
+			super(a);
+			data = new GroupData();
 		}
 		
 		public	function add():void

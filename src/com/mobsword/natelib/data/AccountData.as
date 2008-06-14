@@ -12,12 +12,7 @@ package com.mobsword.natelib.data
 		public	var password:String;
 		public	var state	:String;
 		public	var nick	:String;
-		
-		public	function AccountData()
-		{
-			;
-		}
-		
+		public	var name	:String;
 	}
 	
 }

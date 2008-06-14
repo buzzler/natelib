@@ -1,6 +1,7 @@
 package com.mobsword.natelib.managers
 {
 	import com.mobsword.natelib.managers.Manager;
+	import com.mobsword.natelib.objects.Account;
 	
 	/**
 	* ...
@@ -9,9 +10,9 @@ package com.mobsword.natelib.managers
 	public class SessionManager extends Manager
 	{
 		
-		public function SessionManager()
+		public function SessionManager(a:Account)
 		{
-			;
+			super(a);
 		}
 		
 	}

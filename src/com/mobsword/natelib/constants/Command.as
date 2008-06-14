@@ -89,12 +89,12 @@
 		public	static const ADSB	:String = 'ADSB';
 		
 		/**
-		 * 친구 수락
+		 * 친구 리스트 추가
 		 */
 		public	static const ADDB	:String = 'ADDB';
 		
 		/**
-		 * 친구 삭제
+		 * 친구 리스트 삭제
 		 */
 		public	static const RMVB	:String = 'RMVB';
 		
