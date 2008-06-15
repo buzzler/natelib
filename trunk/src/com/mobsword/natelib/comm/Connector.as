@@ -13,7 +13,7 @@ package com.mobsword.natelib.comm
 
 		public	function Connector()
 		{
-			;
+			socket = new Socket();
 		}
 
 		public	function open(host:String, port:int):void
@@ -24,11 +24,11 @@ package com.mobsword.natelib.comm
 			}
 			catch (e:IOError)
 			{
-				;
+				throw e;
 			}
 			catch (e:SecurityError)
 			{
-				;
+				throw e;
 			}
 		}
 		
@@ -40,7 +40,7 @@ package com.mobsword.natelib.comm
 			}
 			catch (e:IOError)
 			{
-				;
+				throw e;
 			}
 		}
 	}
