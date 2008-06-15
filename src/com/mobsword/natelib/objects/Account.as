@@ -7,7 +7,6 @@
 package com.mobsword.natelib.objects
 {
 	import com.mobsword.natelib.data.AccountData;
-	import com.mobsword.natelib.events.Observer;
 	import com.mobsword.natelib.managers.ConnectionManager;
 	import com.mobsword.natelib.managers.FriendManager;
 	import com.mobsword.natelib.managers.GroupManager;
@@ -23,7 +22,7 @@ package com.mobsword.natelib.objects
 	public class Account extends EventDispatcher
 	{
 		public	var data	:AccountData;
-		public	var observer:Observer;
+		public	var radio	:Radio;
 		public	var gm		:GroupManager;
 		public	var fm		:FriendManager;
 		public	var sm		:SessionManager;
@@ -42,7 +41,7 @@ package com.mobsword.natelib.objects
 		private	function constructor():void
 		{
 			data	= new AccountData();
-			observer= new Observer();
+			radio	= new Radio();
 			gm		= new GroupManager(this);
 			fm		= new FriendManager(this);
 			sm		= new SessionManager(this);
