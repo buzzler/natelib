@@ -9,7 +9,7 @@ package com.mobsword.natelib.comm
 	*/
 	public class Connector
 	{
-		private	var socket:Socket;
+		protected	var socket:Socket;
 
 		public	function Connector()
 		{
