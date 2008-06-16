@@ -26,8 +26,8 @@ package com.mobsword.natelib.comm
 		private function constructor(a:Account):void
 		{
 			account = a;
-			reader	= new AccountReader();
-			writer	= new AccountWriter();
+			reader	= new AccountReader(socket, a.radio);
+			writer	= new AccountWriter(socket, a.radio);
 		}
 		
 		private function listener():void
@@ -36,6 +36,7 @@ package com.mobsword.natelib.comm
 			socket.addEventListener(Event.CLOSE,	onClose);
 		}
 		
+		3
 		private function onOpen(event:Event):void
 		{
 			socket.addEventListener(ProgressEvent.SOCKET_DATA,			reader.onData);
