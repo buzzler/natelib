@@ -1,5 +1,6 @@
 package com.mobsword.natelib.objects
 {
+	import com.mobsword.natelib.data.SessionData;
 	
 	/**
 	* ...
@@ -7,12 +8,11 @@ package com.mobsword.natelib.objects
 	*/
 	public class Session
 	{
-		public	var id:String;
-		public	var friends:Array;
+		public	var data:SessionData;
 
 		public	function Session()
 		{
-			;
+			data = new SessionData();
 		}
 		
 		public	function send():void

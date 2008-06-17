@@ -9,11 +9,13 @@ package com.mobsword.natelib.comm
 	*/
 	public class Connector
 	{
-		protected	var socket:Socket;
+		protected	var queue	:Array;
+		protected	var socket	:Socket;
 
 		public	function Connector()
 		{
-			socket = new Socket();
+			queue	= new Array();
+			socket	= new Socket();
 		}
 
 		public	function open(host:String, port:int):void
@@ -42,6 +44,11 @@ package com.mobsword.natelib.comm
 			{
 				throw e;
 			}
+		}
+		
+		public	function reserve(r:Object):void
+		{
+			queue.push(r);
 		}
 	}
 }

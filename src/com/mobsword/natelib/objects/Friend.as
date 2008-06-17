@@ -6,11 +6,14 @@
 
 package com.mobsword.natelib.objects
 {
+	import com.mobsword.natelib.data.FriendData;
 	public class Friend
 	{
-		public function Friend()
+		public	var data:FriendData;
+		
+		public	function Friend(fd:FriendData)
 		{
-			;
+			data = fd;
 		}
 
 		public	function open():void

@@ -24,9 +24,13 @@ package com.mobsword.natelib.comm
 		public	function onData(event:RadioEvent):void
 		{
 			var m:Message = event.data as Message;
+			sendData(m);
+		}
+		
+		public	function sendData(m:Message):void
+		{
 			m.rid = rid++;
-
-			socket.writeMultiByte(m.toString());
+			socket.writeMultiByte(m.toString(), 'UTF-8');
 			socket.flush();
 		}
 	}

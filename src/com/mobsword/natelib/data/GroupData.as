@@ -7,11 +7,13 @@ package com.mobsword.natelib.data
 	*/
 	public class GroupData
 	{
-		public	var version:String;
-
+		public	var id		:String;
+		public	var name	:String;
+		public	var friends	:Array;
+		
 		public function GroupData()
 		{
-			;
+			friends = new Array();
 		}
 		
 	}
