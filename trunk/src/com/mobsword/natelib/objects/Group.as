@@ -1,5 +1,6 @@
 package com.mobsword.natelib.objects
 {
+	import com.mobsword.natelib.data.GroupData;
 	
 	/**
 	* ...
@@ -7,12 +8,11 @@ package com.mobsword.natelib.objects
 	*/
 	public class Group
 	{
-		public	var id:String;
-		public	var friends:Array;
+		public	var data:GroupData;
 		
-		public	function Group()
+		public	function Group(gd:GroupData)
 		{
-			;
+			data = gd;
 		}
 		
 		public	function block():void

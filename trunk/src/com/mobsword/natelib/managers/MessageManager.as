@@ -1,9 +1,9 @@
 package com.mobsword.natelib.managers
 {
+	import com.adobe.crypto.MD5;
 	import com.mobsword.natelib.constants.Command;
 	import com.mobsword.natelib.data.Message;
 	import com.mobsword.natelib.objects.Account;
-	import com.adobe.crypto.MD5;
 	import com.mobsword.natelib.utils.Codec;
 	/**
 	* ...
@@ -45,7 +45,11 @@ package com.mobsword.natelib.managers
 
 		public	function genLSIN():Message
 		{
-			var id:String	= account.data.email.substr(0, account.data.email.indexOf('@'));
+			var id:String;
+			if (account.data.email.indexOf('@nate.') >= 0)
+				id = account.data.email.substr(0, account.data.email.indexOf('@'));
+			else
+				id = account.data.email;
 			var md5:String	= MD5.hash(account.data.password + id);
 			var m:Message	= new Message();
 			m.command	= Command.LSIN;
@@ -130,7 +134,7 @@ package com.mobsword.natelib.managers
 			var m:Message = new Message();
 			m.command	= Command.ADDG;
 			m.isText	= true;
-			m.param		= [account.gm.data.version, Codec.encode(n)];
+			m.param		= [account.gm.version, Codec.encode(n)];
 			return m;
 		}
 
@@ -139,16 +143,16 @@ package com.mobsword.natelib.managers
 			var m:Message = new Message();
 			m.command	= Command.RENG;
 			m.isText	= true;
-			m.param		= [account.gm.data.version, g, Codec.encode(n)];
+			m.param		= [account.gm.version, g, Codec.encode(n)];
 			return m;
 		}
 
-		public	function genRMVG(g:String):void
+		public	function genRMVG(g:String):Message
 		{
 			var m:Message = new Message();
 			m.command	= Command.RMVG;
 			m.isText	= true;
-			m.param		= [account.gm.data.version, g];
+			m.param		= [account.gm.version, g];
 			return m;
 		}
 
@@ -201,7 +205,7 @@ package com.mobsword.natelib.managers
 			var m:Message = new Message();
 			m.command	= Command.MESG;
 			m.isText	= true;
-			m.param		= msg.toString();
+			m.param		= [msg.toString()];
 			return m;
 		}
 

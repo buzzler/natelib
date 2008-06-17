@@ -1,6 +1,7 @@
 ﻿package com.mobsword.natelib.events
 {
 	import flash.events.EventDispatcher;
+	import flash.events.IEventDispatcher;
 	
 	/**
 	* 서버로부터 데이타를 받은경우 이벤트가 발생한다.

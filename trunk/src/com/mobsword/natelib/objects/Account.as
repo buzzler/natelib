@@ -6,8 +6,11 @@
 
 package com.mobsword.natelib.objects
 {
+	import com.mobsword.natelib.comm.AccountConnector;
+	import com.mobsword.natelib.constants.Info;
 	import com.mobsword.natelib.data.AccountData;
-	import com.mobsword.natelib.managers.ConnectionManager;
+	import com.mobsword.natelib.events.Radio;
+	import com.mobsword.natelib.managers.AccountManager;
 	import com.mobsword.natelib.managers.FriendManager;
 	import com.mobsword.natelib.managers.GroupManager;
 	import com.mobsword.natelib.managers.MessageManager;
@@ -23,6 +26,8 @@ package com.mobsword.natelib.objects
 	{
 		public	var data	:AccountData;
 		public	var radio	:Radio;
+		public	var conn	:AccountConnector;
+		public	var am		:AccountManager;
 		public	var gm		:GroupManager;
 		public	var fm		:FriendManager;
 		public	var sm		:SessionManager;
@@ -42,6 +47,8 @@ package com.mobsword.natelib.objects
 		{
 			data	= new AccountData();
 			radio	= new Radio();
+			conn	= new AccountConnector(this);
+			am		= new AccountManager(this);
 			gm		= new GroupManager(this);
 			fm		= new FriendManager(this);
 			sm		= new SessionManager(this);
@@ -65,6 +72,8 @@ package com.mobsword.natelib.objects
 			data.email		= email;
 			data.password	= password;
 			data.state		= state;
+			
+			conn.open(Info.HOST, Info.PORT);
 		}
 
 		/**

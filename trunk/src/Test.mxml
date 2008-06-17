@@ -8,6 +8,7 @@ import com.mobsword.natelib.objects.Account;
 		public function init():void
 		{
 			var a:Account = new Account();
+			
 			a.online('buzzler@hotmail.com', 'quick573310', AccountState.ONLINE);
 			this.console.text = 'hello world';
 		}

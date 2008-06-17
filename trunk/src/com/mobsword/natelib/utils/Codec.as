@@ -18,6 +18,7 @@ package com.mobsword.natelib.utils
 		
 		public static function encode(str:String):String
 		{
+			var result:String;
 			result = result.replace(patterne1, "%25");
 			result = result.replace(patterne2, "%20");
 			result = result.replace(patterne3, "%20");
