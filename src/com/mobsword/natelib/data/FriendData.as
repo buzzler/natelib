@@ -1,5 +1,6 @@
 package com.mobsword.natelib.data
 {
+	import com.mobsword.natelib.objects.Account;
 	import com.mobsword.natelib.objects.Group;
 	
 	
@@ -9,6 +10,7 @@ package com.mobsword.natelib.data
 	*/
 	public class FriendData
 	{
+		public	var	account	:Account;
 		public	var id		:String;
 		public	var index	:int;
 		public	var name	:String;

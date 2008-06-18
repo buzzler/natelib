@@ -50,12 +50,12 @@ package com.mobsword.natelib.managers {
 		
 		private function onONST(m:Message):void
 		{
-			account.data.update();
+			account.data.state = account.radio.AOD(m.rid.toString()).data.param[0] as String;
 		}
 		
 		private function onCNIK(m:Message):void
 		{
-			account.data.update();
+			account.data.nick = Codec.encode(account.radio.AOD(m.rid.toString()).data.param[0] as String);
 		}
 	}
 	

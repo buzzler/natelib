@@ -14,11 +14,11 @@ package com.mobsword.natelib.objects
 		{
 			data = new SessionData();
 		}
-		
+
 		public	function send():void
 		{
 			;
 		}
 	}
-	
 }
+

@@ -71,6 +71,9 @@
 		 */
 		public	static const ADDG	:String = 'ADDG';
 
+		/**
+		 * 친구 프로필 변경
+		 */
 		public	static const NPRF	:String = 'NPRF';
 		
 		/**
@@ -97,7 +100,12 @@
 		 * 친구 리스트 삭제
 		 */
 		public	static const RMVB	:String = 'RMVB';
-		
+
+		/**
+		 * 친구 그룹이동
+		 */
+		public	static const MVBG	:String = 'MVBG';
+
 		/**
 		 * 대화 세션 요청
 		 */

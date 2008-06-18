@@ -47,11 +47,6 @@ package com.mobsword.natelib.managers
 			}
 		}
 		
-		public	function add():void
-		{
-			;
-		}
-		
 		public	function getGroupById(id:String):Group
 		{
 			return all[id] as Group;
@@ -72,6 +67,7 @@ package com.mobsword.natelib.managers
 			{
 			case 'Y':
 				var gd:GroupData = new GroupData();
+				gd.account	= account;
 				gd.id		= m.param[3] as String;
 				gd.name		= Codec.decode(m.param[4] as String);
 				g			= new Group(gd);
@@ -87,12 +83,20 @@ package com.mobsword.natelib.managers
 			}
 			
 			if (numPackets == (current+1))
-				account.radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, account.mm.genONST(account.data.tempState())));
+				account.radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, account.mm.genONST(account.data.t_state)), true);
 		}
 		
 		private function onADDG(m:Message):void
 		{
-			;
+			var param:Array = account.radio.AOD(m.rid.toString()).data.param;
+			var gd:GroupData = new GroupData();
+			version		= m.param[0] as String;
+			gd.account	= account;
+			gd.id		= m.param[1] as String;
+			gd.name		= Codec.decode(param[1] as String);
+			var g:Group = new Group(gd);
+			all[gd.id]	= g;
+			numGroups++;
 		}
 		
 		private function onRENG(m:Message):void
