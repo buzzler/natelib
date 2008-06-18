@@ -67,11 +67,6 @@ package com.mobsword.natelib.managers
 			}
 		}
 		
-		public	function add(email:String, group:Group, msg:String):void
-		{
-			account.radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, account.mm.genADSB(email, group.data.id, msg)));
-		}
-		
 		public	function getFriendByEmail(email:String):Friend
 		{
 			return all[email] as Friend;

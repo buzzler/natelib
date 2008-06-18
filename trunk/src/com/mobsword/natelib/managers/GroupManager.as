@@ -101,12 +101,17 @@ package com.mobsword.natelib.managers
 		
 		private function onRENG(m:Message):void
 		{
-			;
+			var param:Array = account.radio.AOD(m.rid.toString()).data.param;
+			var g:Group = getGroupById(param[1] as String);
+			g.data.name = param[2] as String;
 		}
 		
 		private function onRMVG(m:Message):void
 		{
-			;
+			var param:Array = account.radio.AOD(m.rid.toString()).data.param;
+			var g:Group		= getGroupById(param[1] as String);
+			all[g.data.id]	= null;
+			numGroups--;
 		}
 	}
 	
