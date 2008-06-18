@@ -19,16 +19,6 @@ package com.mobsword.natelib.objects
 			data = fd;
 		}
 
-		public	function open():void
-		{
-			;
-		}
-
-		public	function close():void
-		{
-			;
-		}
-
 		public	function invite(s:Session):void
 		{
 			;

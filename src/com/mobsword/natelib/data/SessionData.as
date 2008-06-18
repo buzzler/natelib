@@ -10,12 +10,15 @@ package com.mobsword.natelib.data
 	public class SessionData
 	{
 		public	var account:Account;
-
-		public function SessionData()
-		{
-			;
-		}
+		public	var id:String;
+		public	var host:String;
+		public	var port:int;
+		public	var friends:Array;
 		
+		public	function SessionData():void
+		{
+			friends = new Array();
+		}
 	}
 	
 }

@@ -153,6 +153,14 @@ package com.mobsword.natelib.objects
 		{
 			radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, mm.genADSB(email, g.data.id, msg)), true);
 		}
+		
+		/**
+		 * 새로운 대화 새션을 추가한다.
+		 */
+		public function addSession():void
+		{
+			radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, mm.genRESS()));
+		}
 	}
 	
 }
