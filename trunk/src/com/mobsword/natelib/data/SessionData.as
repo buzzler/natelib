@@ -1,5 +1,7 @@
 package com.mobsword.natelib.data
 {
+	import com.mobsword.natelib.objects.Account;
+	
 	
 	/**
 	* ...
@@ -7,7 +9,8 @@ package com.mobsword.natelib.data
 	*/
 	public class SessionData
 	{
-		
+		public	var account:Account;
+
 		public function SessionData()
 		{
 			;

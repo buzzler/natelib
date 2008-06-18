@@ -1,6 +1,7 @@
 package com.mobsword.natelib.objects
 {
 	import com.mobsword.natelib.data.GroupData;
+	import com.mobsword.natelib.events.RadioEvent;
 	
 	/**
 	* ...
@@ -15,26 +16,15 @@ package com.mobsword.natelib.objects
 			data = gd;
 		}
 		
-		public	function block():void
-		{
-			;
-		}
-		
-		public	function unblock():void
-		{
-			;
-		}
-		
-
 		public	function remove():void
 		{
-			;
+			data.account.radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, data.account.mm.genRMVG(data.id)), true);
 		}
 		
-		public	function rename():void
+		public	function rename(name:String):void
 		{
-			;
+			data.account.radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, data.account.mm.genRENG(data.id, name)), true);
 		}
 	}
-	
 }
+

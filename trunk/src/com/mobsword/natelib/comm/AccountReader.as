@@ -40,6 +40,7 @@ package com.mobsword.natelib.comm
 				{
 				case Command.CTOC:
 				case Command.INVT:
+				case Command.MVBG:
 					onPayload();
 					break;
 				default:

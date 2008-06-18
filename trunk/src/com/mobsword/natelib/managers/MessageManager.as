@@ -111,23 +111,34 @@ package com.mobsword.natelib.managers
 			return m;
 		}
 
-		public	function genADDB(email:String, g:String, list:String):Message
+		public	function genADDB(email:String, id:String, list:String):Message
 		{
 			var m:Message = new Message();
 			m.command	= Command.ADDB;
 			m.isText	= true;
-			m.param		= [list, g, email];
+			m.param		= [list, id, email];
 			return m;
 		}
 
-		public	function genRMVB(email:String, g:String, list:String):Message
+		public	function genRMVB(email:String, id:String, list:String):Message
 		{
 			var m:Message = new Message();
 			m.command	= Command.RMVB;
 			m.isText	= true;
-			m.param		= [list, g, email, '0'];
+			m.param		= [list, id, email, '0'];
 			return m;
 		}
+
+		public	function genMVBG(email:String, id:String, fromG:String, toG:String):Message
+		{
+			var payload:Array = ['0', id, email, fromG, toG]; 
+			var m:Message = new Message();
+			m.command	= Command.MVBG;
+			m.isBinary	= true;
+			m.param		= [account.gm.version];
+			m.data		= payload.join(' ') + '\r\n';
+			return m;
+		} 
 
 		public	function genADDG(n:String):Message
 		{

@@ -7,14 +7,17 @@
 package com.mobsword.natelib.objects
 {
 	import com.mobsword.natelib.comm.AccountConnector;
+	import com.mobsword.natelib.constants.AccountState;
 	import com.mobsword.natelib.constants.Info;
 	import com.mobsword.natelib.data.AccountData;
 	import com.mobsword.natelib.events.Radio;
+	import com.mobsword.natelib.events.RadioEvent;
 	import com.mobsword.natelib.managers.AccountManager;
 	import com.mobsword.natelib.managers.FriendManager;
 	import com.mobsword.natelib.managers.GroupManager;
 	import com.mobsword.natelib.managers.MessageManager;
 	import com.mobsword.natelib.managers.SessionManager;
+	
 	import flash.events.EventDispatcher;
 
 	/**
@@ -71,7 +74,7 @@ package com.mobsword.natelib.objects
 		{
 			data.email		= email;
 			data.password	= password;
-			data.state		= state;
+			data.t_state	= state;
 			
 			conn.open(Info.HOST, Info.PORT);
 		}
@@ -84,7 +87,7 @@ package com.mobsword.natelib.objects
 		 */
 		public	function offline():void
 		{
-			;
+			conn.close();
 		}
 		
 		/**
@@ -92,7 +95,7 @@ package com.mobsword.natelib.objects
 		 */
 		public	function busy():void
 		{
-			;
+			radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, mm.genONST(AccountState.BUSY)), true);
 		}
 		
 		/**
@@ -100,7 +103,7 @@ package com.mobsword.natelib.objects
 		 */
 		public	function away():void
 		{
-			;
+			radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, mm.genONST(AccountState.AWAY)), true);
 		}
 		
 		/**
@@ -108,7 +111,7 @@ package com.mobsword.natelib.objects
 		 */
 		public	function phone():void
 		{
-			;
+			radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, mm.genONST(AccountState.PHONE)), true);
 		}
 		
 		
@@ -117,7 +120,7 @@ package com.mobsword.natelib.objects
 		 */
 		public	function meet():void
 		{
-			;
+			radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, mm.genONST(AccountState.MEET)), true);
 		}
 		
 		/**
@@ -128,7 +131,7 @@ package com.mobsword.natelib.objects
 		 */
 		public	function hidden():void
 		{
-			;
+			radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, mm.genONST(AccountState.HIDDEN)), true);
 		}
 		
 		/**
@@ -136,9 +139,9 @@ package com.mobsword.natelib.objects
 		 * 
 		 * @see Group.remove
 		 */
-		public	function addGroup():void
+		public	function addGroup(name:String):void
 		{
-			;
+			radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, mm.genADDG(name)), true);
 		}
 		
 		/**
@@ -146,9 +149,9 @@ package com.mobsword.natelib.objects
 		 * 
 		 * @see Friend.remove
 		 */
-		public	function addFriend():void
+		public	function addFriend(email:String, g:Group, msg:String):void
 		{
-			;
+			radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, mm.genADSB(email, g.data.id, msg)), true);
 		}
 	}
 	

@@ -13,14 +13,27 @@
 	[Event(name = "outgoingData", type = "com.mobsword.natelib.events.RadioEvent")]
 	public class Radio extends EventDispatcher
 	{
+		private var history:Object;
+
 		public	function Radio(target:IEventDispatcher = null)
 		{
 			super(target);
+			history = new Object();
 		}
 		
-		public	function broadcast(event:RadioEvent):void
+		public	function broadcast(event:RadioEvent, record:Boolean = false):void
 		{
 			dispatchEvent(event);
+			if (record)
+				history[event.data.rid.toString()] = event;
+		}
+		
+		public	function AOD(id:String, flush:Boolean = true):RadioEvent
+		{
+			var e:RadioEvent = history[id] as RadioEvent;
+			if (flush)
+				history[id] = null;
+			return e;
 		}
 	}
 	
