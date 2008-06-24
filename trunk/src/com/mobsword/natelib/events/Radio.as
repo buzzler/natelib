@@ -10,6 +10,7 @@
 	/**
 	* 서버로 보낼 데이타가 있는 경우 이벤트가 발생한다.
 	*/
+	
 	[Event(name = "outgoingData", type = "com.mobsword.natelib.events.RadioEvent")]
 	public class Radio extends EventDispatcher
 	{
@@ -36,5 +37,5 @@
 			return e;
 		}
 	}
-	
 }
+
