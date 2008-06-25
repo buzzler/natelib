@@ -21,7 +21,9 @@ package com.mobsword.natelib.objects
 
 		public	function invite(s:Session):void
 		{
-			;
+			var invt:Message = data.account.mm.genINVT(s.data.host, s.data.port, s.data.id);
+			var ctoc:Message = data.account.mm.genCTOC(data.email, invt);
+			data.account.radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, ctoc));
 		}
 
 		public	function block():void
