@@ -4,6 +4,7 @@ package com.mobsword.natelib.managers
 	import com.mobsword.natelib.data.Message;
 	import com.mobsword.natelib.data.SessionData;
 	import com.mobsword.natelib.events.RadioEvent;
+	import com.mobsword.natelib.events.SessionEvent;
 	import com.mobsword.natelib.objects.Account;
 	import com.mobsword.natelib.objects.Session;
 	
@@ -44,6 +45,12 @@ package com.mobsword.natelib.managers
 			var s:Session = new Session(account, sd);
 			
 			all[sd.id]	= s;
+			/*
+			*	dispatch Event for external Interface
+			*/
+			var se:SessionEvent = new SessionEvent(SessionEvent.NEW_SESSION);
+			se.session = s;
+			account.dispatchEvent(se);
 		}
 		
 		private function onCTOC(m:Message):void
@@ -65,6 +72,13 @@ package com.mobsword.natelib.managers
 			var s:Session	= new Session(account, sd);
 			
 			all[sd.id]		= s;
+			/**
+			 * dispatch Event for external Interface
+			 */
+			var se:SessionEvent = new SessionEvent(SessionEvent.INVITE_SESSION);
+			se.friend = account.fm.getFriendByEmail(from);
+			se.session = s;
+			account.dispatchEvent(se);
 		}
 	}
 	

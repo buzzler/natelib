@@ -1,6 +1,7 @@
 package com.mobsword.natelib.managers {
 	import com.mobsword.natelib.constants.Command;
 	import com.mobsword.natelib.data.Message;
+	import com.mobsword.natelib.events.AccountEvent;
 	import com.mobsword.natelib.events.RadioEvent;
 	import com.mobsword.natelib.objects.Account;
 	import com.mobsword.natelib.utils.Codec;
@@ -50,12 +51,33 @@ package com.mobsword.natelib.managers {
 		
 		private function onONST(m:Message):void
 		{
+			
+			var ae:AccountEvent = new AccountEvent(AccountEvent.STATE_CHANGE);
+			ae.account = account;
+			ae.old_value = account.data.state;
+			
 			account.data.state = account.radio.AOD(m.rid.toString()).data.param[0] as String;
+
+			/*
+			*	dispatch Event for external Interface
+			*/
+			ae.new_value = account.data.state;
+			account.dispatchEvent(ae);
 		}
 		
 		private function onCNIK(m:Message):void
 		{
+			var ae:AccountEvent = new AccountEvent(AccountEvent.STATE_CHANGE);
+			ae.account = account;
+			ae.old_value = account.data.nick;
+			
 			account.data.nick = Codec.encode(account.radio.AOD(m.rid.toString()).data.param[0] as String);
+
+			/*
+			*	dispatch Event for external Interface
+			*/
+			ae.new_value = account.data.nick;
+			account.dispatchEvent(ae);
 		}
 	}
 	

@@ -3,6 +3,7 @@ package com.mobsword.natelib.managers
 	import com.mobsword.natelib.constants.Command;
 	import com.mobsword.natelib.data.GroupData;
 	import com.mobsword.natelib.data.Message;
+	import com.mobsword.natelib.events.GroupEvent;
 	import com.mobsword.natelib.events.RadioEvent;
 	import com.mobsword.natelib.objects.Account;
 	import com.mobsword.natelib.objects.Group;
@@ -97,13 +98,30 @@ package com.mobsword.natelib.managers
 			var g:Group = new Group(gd);
 			all[gd.id]	= g;
 			numGroups++;
+			
+			/*
+			*	dispatch Event for external Interface
+			*/
+			var ge:GroupEvent = new GroupEvent(GroupEvent.NEW_GROUP);
+			ge.group = g;
+			account.dispatchEvent(ge);
 		}
 		
 		private function onRENG(m:Message):void
 		{
 			var param:Array = account.radio.AOD(m.rid.toString()).data.param;
 			var g:Group = getGroupById(param[1] as String);
+			var ge:GroupEvent = new GroupEvent(GroupEvent.RENAME_GROUP);
+			ge.group = g;
+			ge.old_value = g.data.name;
 			g.data.name = param[2] as String;
+			ge.new_value = g.data.name;
+			
+			/*
+			*	dispatch Event for external Interface
+			*/
+			account.dispatchEvent(ge);
+			g.dispatchEvent(ge);
 		}
 		
 		private function onRMVG(m:Message):void
@@ -112,6 +130,14 @@ package com.mobsword.natelib.managers
 			var g:Group		= getGroupById(param[1] as String);
 			all[g.data.id]	= null;
 			numGroups--;
+			
+			/*
+			*	dispatch Event for external Interface
+			*/
+			var ge:GroupEvent = new GroupEvent(GroupEvent.REMOVE_GROUP);
+			ge.group = g;
+			account.dispatchEvent(ge);
+			g.dispatchEvent(ge);
 		}
 	}
 	
