@@ -9,14 +9,15 @@ package com.mobsword.natelib.objects
 	
 	import flash.events.EventDispatcher;
 	
-	/**
-	* 서버로부터 데이타를 받은경우 이벤트가 발생한다.
-	*/
-	[Event(name = "incomingData", type = "com.mobsword.natelib.events.RadioEvent")]
-	/**
-	* 서버로 보낼 데이타가 있는 경우 이벤트가 발생한다.
-	*/
-	[Event(name = "outgoingData", type = "com.mobsword.natelib.events.RadioEvent")]
+	[Event(name = "incomingData", 	type = "com.mobsword.natelib.events.RadioEvent")]
+	[Event(name = "outgoingData", 	type = "com.mobsword.natelib.events.RadioEvent")]
+	[Event(name = "s_openSession", 	type = "com.mobsword.natelib.events.SessionEvent")]
+	[Event(name = "s_closeSession", type = "com.mobsword.natelib.events.SessionEvent")]
+	[Event(name = "s_joinSession", 	type = "com.mobsword.natelib.events.SessionEvent")]
+	[Event(name = "s_quitSession", 	type = "com.mobsword.natelib.events.SessionEvent")]
+	[Event(name = "s_userSession", 	type = "com.mobsword.natelib.events.SessionEvent")]
+	[Event(name = "m_typing", 		type = "com.mobsword.natelib.events.MessageEvent")]
+	[Event(name = "m_messege",		type = "com.mobsword.natelib.events.MessageEvent")]
 	public class Session extends EventDispatcher
 	{
 		public	var account	:Account;

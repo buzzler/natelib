@@ -10,7 +10,14 @@ package com.mobsword.natelib.objects
 	import com.mobsword.natelib.data.FriendData;
 	import com.mobsword.natelib.data.Message;
 	import com.mobsword.natelib.events.RadioEvent;
-	public class Friend
+	
+	import flash.events.EventDispatcher;
+	
+	[Event(name = "f_nickChange", type = "com.mobsword.natelib.events.FriendEvent")]
+	[Event(name = "f_stateChange", type = "com.mobsword.natelib.events.FriendEvent")]
+	[Event(name = "f_listChange", type = "com.mobsword.natelib.events.FriendEvent")]
+	[Event(name = "f_groupChange", type = "com.mobsword.natelib.events.FriendEvent")]
+	public class Friend extends EventDispatcher
 	{
 		public	var data:FriendData;
 		

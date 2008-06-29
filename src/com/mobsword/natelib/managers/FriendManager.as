@@ -4,6 +4,7 @@ package com.mobsword.natelib.managers
 	import com.mobsword.natelib.constants.ListType;
 	import com.mobsword.natelib.data.FriendData;
 	import com.mobsword.natelib.data.Message;
+	import com.mobsword.natelib.events.FriendEvent;
 	import com.mobsword.natelib.events.RadioEvent;
 	import com.mobsword.natelib.objects.Account;
 	import com.mobsword.natelib.objects.Friend;
@@ -123,13 +124,33 @@ package com.mobsword.natelib.managers
 		private function onNTFY(m:Message):void
 		{
 			var f:Friend = getFriendByEmail(m.param[0] as String);
+			var fe:FriendEvent = new FriendEvent(FriendEvent.STATE_CHANGE);
+			fe.friend = f;
+			fe.old_value = f.data.state;
 			f.data.state = m.param[1] as String;
+			fe.new_value = f.data.state;
+			
+			/*
+			*	dispatch Event for external Interface
+			*/
+			account.dispatchEvent(fe);
+			f.dispatchEvent(fe);
 		}
 		
 		private function onNNIK(m:Message):void
 		{
 			var f:Friend = getFriendByEmail(m.param[0] as String);
+			var fe:FriendEvent = new FriendEvent(FriendEvent.NICK_CHANGE);
+			fe.friend = f;
+			fe.old_value = f.data.nick;
 			f.data.nick	= Codec.encode(m.param[1] as String);
+			fe.new_value = f.data.nick;
+			
+			/*
+			*	dispatch Event for external Interface
+			*/
+			account.dispatchEvent(fe);
+			f.dispatchEvent(fe);
 		}
 		
 		private function onNPRF(m:Message):void
@@ -149,6 +170,13 @@ package com.mobsword.natelib.managers
 			all[fd.id]	= f;
 			foward.push(f);
 			allow.push(f);
+			
+			/*
+			*	dispatch Event for external Interface
+			*/
+			var fe:FriendEvent = new FriendEvent(FriendEvent.NEW_FRIEND);
+			fe.friend = f;
+			account.dispatchEvent(fe);
 		}
 		
 		private function onADDB(m:Message):void
@@ -186,6 +214,14 @@ package com.mobsword.natelib.managers
 				reverse.push(friend);
 				break;
 			}
+			
+			/*
+			*	dispatch Event for external Interface
+			*/
+			var fe:FriendEvent = new FriendEvent(FriendEvent.LIST_CHANGE);
+			fe.friend = friend;
+			account.dispatchEvent(fe);
+			friend.dispatchEvent(fe);
 		}
 		
 		private function onRMVB(m:Message):void
@@ -228,6 +264,14 @@ package com.mobsword.natelib.managers
 				reverse.splice(i,1);
 				break;
 			}
+			
+			/*
+			*	dispatch Event for external Interface
+			*/
+			var fe:FriendEvent = new FriendEvent(FriendEvent.LIST_CHANGE);
+			fe.friend = friend;
+			account.dispatchEvent(fe);
+			friend.dispatchEvent(fe);
 		}
 		
 		private function onMVBG(m:Message):void
@@ -241,6 +285,16 @@ package com.mobsword.natelib.managers
 			f.data.group = tg;
 			tg.data.friends.push(f);
 			fg.data.friends.splice(fg.data.friends.indexOf(f),1);
+			
+			/*
+			*	dispatch Event for external Interface
+			*/
+			var fe:FriendEvent = new FriendEvent(FriendEvent.GROUP_CHANGE);
+			fe.friend = f;
+			fe.old_group = fg;
+			fe.new_group = tg;
+			account.dispatchEvent(fe);
+			f.dispatchEvent(fe);
 		}
 	}
 }

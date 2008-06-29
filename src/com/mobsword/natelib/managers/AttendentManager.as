@@ -3,6 +3,7 @@ package com.mobsword.natelib.managers
 	import com.mobsword.natelib.constants.Command;
 	import com.mobsword.natelib.data.Message;
 	import com.mobsword.natelib.events.RadioEvent;
+	import com.mobsword.natelib.events.SessionEvent;
 	import com.mobsword.natelib.objects.Attendent;
 	import com.mobsword.natelib.objects.Session;
 	import com.mobsword.natelib.utils.Codec;
@@ -28,6 +29,9 @@ package com.mobsword.natelib.managers
 		{
 			switch (event.data.command)
 			{
+			case Command.ENTR:
+				pmENTR(event.data);
+				break;
 			case Command.USER:
 				onUSER(event.data);
 				break;
@@ -43,6 +47,16 @@ package com.mobsword.natelib.managers
 			}
 		}
 		
+		private function onENTR(m:Message):void
+		{
+			/*
+			*	dispatch Event for external Interface
+			*/
+			var se:SessionEvent = new SessionEvent(SessionEvent.OPEN_SESSION);
+			se.session = session;
+			session.dispatchEvent(se);
+		}
+		
 		private function onUSER(m:Message):void
 		{
 			var a:Attendent = new Attendent();
@@ -54,26 +68,51 @@ package com.mobsword.natelib.managers
 			attendies.push(a);
 			all[a.email] = a;
 			numAttendies++;
+			
+			/*
+			*	dispatch Event for external Interface
+			*/
+			var se:SessionEvent = new SessionEvent(SessionEvent.USER_SESSION);
+			se.attendent	= a;
+			se.friend		= a.friend;
+			se.session		= session;
+			session.dispatchEvent(se);
 		}
 		
 		private function onQUIT(m:Message):void
 		{
+			var se:SessionEvent;
 			if (m.rid == 0)		//quit attendent
 			{
 				var email:String = m.param[0] as String;
 				var a:Attendent = all[email] as Attendent;
-				if (a != null)
-				{
-					attendies.splice(attendies.indexOf(a),1);
-					all[email] = null;
-					numAttendies--;
-				}
+				if (a == null)
+					return
+				attendies.splice(attendies.indexOf(a),1);
+				all[email] = null;
+				numAttendies--;
+				
+				/*
+				*	dispatch Event for external Interface
+				*/
+				se = new SessionEvent(SessionEvent.QUIT_SESSION);
+				se.attendent	= a;
+				se.friend		= a.friend;
+				se.session		= session;
+				session.dispatchEvent(se);
 			}
 			else				//quit self
 			{
 				attendies.length = 0;
 				all = new Object();
 				numAttendies = 0;
+				
+				/*
+				*	dispatch Event for external Interface
+				*/
+				se = new SessionEvent(SessionEvent.CLOSE_SESSION);
+				se.session = session;
+				session.dispatchEvent(se);
 			}
 		}
 		
@@ -88,6 +127,15 @@ package com.mobsword.natelib.managers
 			attendies.push(a);
 			all[a.email] = a;
 			numAttendies++;
+			
+			/*
+			*	dispatch Event for external Interface
+			*/
+			var se:SessionEvent = new SessionEvent(SessionEvent.JOIN_SESSION);
+			se.attendent	= a;
+			se.friend		= a.friend;
+			se.session		= session;
+			session.dispatchEvent(se);
 		}
 		
 		private function onWHSP(m:Message):void

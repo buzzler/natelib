@@ -3,11 +3,15 @@ package com.mobsword.natelib.objects
 	import com.mobsword.natelib.data.GroupData;
 	import com.mobsword.natelib.events.RadioEvent;
 	
+	import flash.events.EventDispatcher;
+	
 	/**
 	* ...
 	* @author Default
 	*/
-	public class Group
+	[Event(name = "g_renameGroup", type = "com.mobsword.natelib.events.GroupEvent")]
+	[Event(name = "g_removeGroup", type = "com.mobsword.natelib.events.GroupEvent")]
+	public class Group extends EventDispatcher
 	{
 		public	var data:GroupData;
 		
