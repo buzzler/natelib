@@ -30,7 +30,7 @@ package com.mobsword.natelib.managers
 			switch (event.data.command)
 			{
 			case Command.ENTR:
-				pmENTR(event.data);
+				onENTR(event.data);
 				break;
 			case Command.USER:
 				onUSER(event.data);
