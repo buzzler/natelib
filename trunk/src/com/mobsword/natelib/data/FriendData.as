@@ -20,6 +20,9 @@ package com.mobsword.natelib.data
 		public	var mobile	:String;
 		public	var birth	:String;
 		public	var block	:Boolean;
+		public	var forward	:Boolean;
+		public	var allow	:Boolean;
+		public	var reverse	:Boolean;
 		public	var group	:Group;
 	}
 }

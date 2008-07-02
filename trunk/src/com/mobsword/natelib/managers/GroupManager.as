@@ -17,16 +17,18 @@ package com.mobsword.natelib.managers
 	{
 		public	var version		:String;
 		public	var all			:Object;
+		public	var groups		:Array;
 		public	var numGroups	:int;
 		private var numPackets	:int;
 
 		public	function GroupManager(a:Account)
 		{
 			super(a);
-			version = '';
-			all = new Object();
-			numGroups = 0;
-			numPackets = 0;
+			version		= '';
+			all			= new Object();
+			groups		= new Array();
+			numGroups	= 0;
+			numPackets	= 0;
 		}
 		
 		override protected function onIncoming(event:RadioEvent):void
@@ -73,6 +75,7 @@ package com.mobsword.natelib.managers
 				gd.name		= Codec.decode(m.param[4] as String);
 				g			= new Group(gd);
 				all[gd.id]	= g;
+				groups.push(g);
 				numGroups++;
 				break;
 			case 'N':
@@ -97,6 +100,7 @@ package com.mobsword.natelib.managers
 			gd.name		= Codec.decode(param[1] as String);
 			var g:Group = new Group(gd);
 			all[gd.id]	= g;
+			groups.push(g);
 			numGroups++;
 			
 			/*
@@ -129,6 +133,7 @@ package com.mobsword.natelib.managers
 			var param:Array = account.radio.AOD(m.rid.toString()).data.param;
 			var g:Group		= getGroupById(param[1] as String);
 			all[g.data.id]	= null;
+			groups.splice(groups.indexOf(g),1);
 			numGroups--;
 			
 			/*

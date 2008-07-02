@@ -83,7 +83,7 @@ package com.mobsword.natelib.objects
 		 * @param	password	패스워드
 		 * @param	state		접속시 사용자 상태
 		 */
-		public	function online(email:String, password:String, state:String):void
+		public	function connect(email:String, password:String, state:String):void
 		{
 			data.email		= email;
 			data.password	= password;
@@ -98,9 +98,17 @@ package com.mobsword.natelib.objects
 		 * 
 		 * @see	hidden
 		 */
-		public	function offline():void
+		public	function disconnect():void
 		{
 			conn.close();
+		}
+		
+		/**
+		 * 사용자의 상태를 '온라인'으로 변경한다.
+		 */
+		public	function online():void
+		{
+			radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, mm.genONST(AccountState.ONLINE)), true);
 		}
 		
 		/**
@@ -145,6 +153,11 @@ package com.mobsword.natelib.objects
 		public	function hidden():void
 		{
 			radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, mm.genONST(AccountState.HIDDEN)), true);
+		}
+
+		public	function rename(name:String):void
+		{
+			radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, mm.genCNIK(name)), true);
 		}
 		
 		/**

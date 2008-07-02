@@ -16,7 +16,6 @@ package com.mobsword.natelib.events
 		public function AccountEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);
-			trace('');
 		}
 		
 	}
