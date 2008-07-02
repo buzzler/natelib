@@ -15,6 +15,14 @@ package com.mobsword.natelib.data
 		public	var nick	:String;
 		public	var name	:String;
 		public	var ticket	:String;
+		public	var groups	:Array;
+		public	var friends	:Array;
+		
+		public	function AccountData():void
+		{
+			groups	= new Array();
+			friends	= new Array();
+		}
 	}
 	
 }

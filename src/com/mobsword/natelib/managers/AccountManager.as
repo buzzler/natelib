@@ -67,11 +67,11 @@ package com.mobsword.natelib.managers {
 		
 		private function onCNIK(m:Message):void
 		{
-			var ae:AccountEvent = new AccountEvent(AccountEvent.STATE_CHANGE);
+			var ae:AccountEvent = new AccountEvent(AccountEvent.NICK_CHANGE);
 			ae.account = account;
 			ae.old_value = account.data.nick;
 			
-			account.data.nick = Codec.encode(account.radio.AOD(m.rid.toString()).data.param[0] as String);
+			account.data.nick = Codec.decode(account.radio.AOD(m.rid.toString()).data.param[0] as String);
 
 			/*
 			*	dispatch Event for external Interface

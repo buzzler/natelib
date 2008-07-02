@@ -19,7 +19,7 @@ package com.mobsword.natelib.managers
 	{
 		public	var numFriends:int;
 		public	var all		:Object;
-		public	var foward	:Array;
+		public	var forward	:Array;
 		public	var allow	:Array;
 		public	var block	:Array;
 		public	var reverse	:Array;
@@ -28,7 +28,7 @@ package com.mobsword.natelib.managers
 		{
 			super(a);
 			all		= new Object();
-			foward	= new Array();
+			forward	= new Array();
 			allow	= new Array();
 			block	= new Array();
 			reverse	= new Array();
@@ -42,7 +42,7 @@ package com.mobsword.natelib.managers
 				onLIST(event.data);
 				break;
 			case Command.INFY:
-				onLIST(event.data);
+				onINFY(event.data);
 				break;
 			case Command.NTFY:
 				onNTFY(event.data);
@@ -88,28 +88,37 @@ package com.mobsword.natelib.managers
 			fd.index	= parseInt(m.param[0] as String);
 			fd.email	= m.param[3] as String;
 			fd.id		= m.param[4] as String;
-			fd.name		= m.param[5] as String;
-			fd.nick		= m.param[6] as String;
+			fd.name		= Codec.decode(m.param[5] as String);
+			fd.nick		= Codec.decode(m.param[6] as String);
 			fd.mobile	= m.param[7] as String;
 			fd.birth	= m.param[9] as String;
 			
 			var f:Friend = new Friend(fd);
 				all[fd.email] = f;			//all
 				all[fd.id] = f;
+
 			if (lists.charAt(0) == '1')
-				foward.push(f);				//foward
+			{
+				forward.push(f);				//forward
+				fd.forward = true;
+			}
 			if (lists.charAt(1) == '1')
 			{
 				allow.push(f);				//allow
+				fd.allow = true;
 				fd.block = false;
 			}
 			if (lists.charAt(2) == '1')
 			{
 				block.push(f);				//block
+				fd.allow = false;
 				fd.block = true;
 			}
 			if (lists.charAt(3) == '1')
+			{
 				reverse.push(f);			//reverse
+				fd.reverse = true;
+			}
 
 			if (numFriends == (fd.index+1))
 				account.radio.broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, account.mm.genGLST()));
@@ -143,7 +152,7 @@ package com.mobsword.natelib.managers
 			var fe:FriendEvent = new FriendEvent(FriendEvent.NICK_CHANGE);
 			fe.friend = f;
 			fe.old_value = f.data.nick;
-			f.data.nick	= Codec.encode(m.param[1] as String);
+			f.data.nick	= Codec.decode(m.param[1] as String);
 			fe.new_value = f.data.nick;
 			
 			/*
@@ -168,7 +177,7 @@ package com.mobsword.natelib.managers
 			var f:Friend= new Friend(fd);
 			all[fd.email]=f;
 			all[fd.id]	= f;
-			foward.push(f);
+			forward.push(f);
 			allow.push(f);
 			
 			/*
@@ -203,15 +212,21 @@ package com.mobsword.natelib.managers
 			{
 			case ListType.ALLOWED:
 				allow.push(friend);
+				friend.data.allow = true;
+				friend.data.block = false;
 				break;
 			case ListType.BLOCKED:
 				block.push(friend);
+				friend.data.block = true;
+				friend.data.allow = false;
 				break;
 			case ListType.FOWARD:
-				foward.push(friend);
+				forward.push(friend);
+				friend.data.forward = true;
 				break;
 			case ListType.REVERSE:
 				reverse.push(friend);
+				friend.data.reverse = true;
 				break;
 			}
 			
@@ -250,18 +265,24 @@ package com.mobsword.natelib.managers
 			case ListType.ALLOWED:
 				i = allow.indexOf(friend);
 				allow.splice(i,1);
+				friend.data.allow = false;
+				friend.data.block = true;
 				break;
 			case ListType.BLOCKED:
 				i = allow.indexOf(friend);
 				block.splice(i,1);
+				friend.data.allow = true;
+				friend.data.block = false;
 				break;
 			case ListType.FOWARD:
-				i = foward.indexOf(friend);
-				foward.splice(i,1);
+				i = forward.indexOf(friend);
+				forward.splice(i,1);
+				friend.data.forward = false;
 				break;
 			case ListType.REVERSE:
 				i = reverse.indexOf(friend);
 				reverse.splice(i,1);
+				friend.data.reverse = false;
 				break;
 			}
 			

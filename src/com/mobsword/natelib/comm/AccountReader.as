@@ -44,6 +44,8 @@ package com.mobsword.natelib.comm
 					onPayload();
 					break;
 				default:
+					if (buffer.lastIndexOf('\r\n') < (buffer.length - 2))
+						return;
 					onMessage();
 					break;
 				}
