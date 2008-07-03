@@ -1,6 +1,7 @@
 package com.mobsword.natelib.managers
 {
 	import com.mobsword.natelib.constants.Command;
+	import com.mobsword.natelib.constants.FriendState;
 	import com.mobsword.natelib.constants.ListType;
 	import com.mobsword.natelib.data.FriendData;
 	import com.mobsword.natelib.data.Message;
@@ -86,6 +87,7 @@ package com.mobsword.natelib.managers
 
 			fd.account	= account;
 			fd.index	= parseInt(m.param[0] as String);
+			fd.state	= FriendState.OFFLINE;
 			fd.email	= m.param[3] as String;
 			fd.id		= m.param[4] as String;
 			fd.name		= Codec.decode(m.param[5] as String);
@@ -174,6 +176,7 @@ package com.mobsword.natelib.managers
 			fd.email	= account.radio.AOD(m.rid.toString()).data.param[2] as String;
 			fd.id		= m.param[2] as String;
 			fd.name		= m.param[3] as String;
+			fd.state	= FriendState.OFFLINE;
 			var f:Friend= new Friend(fd);
 			all[fd.email]=f;
 			all[fd.id]	= f;

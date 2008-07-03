@@ -1,6 +1,7 @@
 package com.mobsword.natelib.managers
 {
 	import com.mobsword.natelib.constants.Command;
+	import com.mobsword.natelib.data.Message;
 	import com.mobsword.natelib.events.MessageEvent;
 	import com.mobsword.natelib.events.RadioEvent;
 	import com.mobsword.natelib.objects.Session;
@@ -20,30 +21,53 @@ package com.mobsword.natelib.managers
 
 		private function onIncoming(event:RadioEvent):void
 		{
-			if (event.data.rid != 0)
-				return;
-			var from:String	= event.data.param[0] as String;
-			var cmd:String	= event.data.param[1] as String;
-			var data:String	= event.data.param[2] as String;
 			var me:MessageEvent;
+			/**
+			 * The Message I sent
+			 */
+			if ((event.data.rid != 0)&&(event.data.command == Command.MESG))
+			{
+				var m:Message = session.AOD(event.data.rid.toString()).data;
+				var ary:Array = (m.param[0] as String).split('%09');
+				me = new MessageEvent(MessageEvent.SENT);
+				me.session = session;
+				me.message = Codec.decode(ary[3] as String);
+				session.dispatchEvent(me);
+				return;
+			}
+
+			/**
+			 * The Message I received
+			 */
+			if (event.data.param != null)
+			{
+				var from:String	= event.data.param[0] as String;
+				var cmd:String	= event.data.param[1] as String;
+				var data:String	= event.data.param[2] as String;
+			}
 			switch (cmd)
 			{
 			case Command.TYPING:
 				me = new MessageEvent(MessageEvent.TYPING);
-				me.typing = data;
+				me.session	= session;
+				me.friend	= session.account.fm.getFriendByEmail(from);
+				me.typing	= data;
 				break;
 			case Command.EMOTICON:
 				return;
 			case Command.MSG:
 				var param:Array = data.split('%09');
 				me = new MessageEvent(MessageEvent.MESSAGE);
+				me.session	= session;
+				me.friend	= session.account.fm.getFriendByEmail(from);
 				me.font		= Codec.decode(param[0] as String);
 				me.color	= param[1] as String;
 				me.fonttype	= param[2] as String;
 				me.message	= Codec.decode(param[3] as String);
 				break;
 			}
-			session.dispatchEvent(me);
+			if (me != null)
+				session.dispatchEvent(me);
 		}
 		
 		private function onOutgoing(event:RadioEvent):void

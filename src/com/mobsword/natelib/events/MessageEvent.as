@@ -9,6 +9,7 @@ package com.mobsword.natelib.events
 	{
 		public	static const TYPING	:String = 'm_typing';
 		public	static const MESSAGE:String = 'm_messege';
+		public	static const SENT	:String = 'm_sent';
 		
 		public	var session	:Session;
 		public	var friend	:Friend;

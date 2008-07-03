@@ -2,6 +2,7 @@ package com.mobsword.natelib.comm
 {
 	import com.mobsword.natelib.data.Message;
 	import com.mobsword.natelib.events.RadioEvent;
+	import com.mobsword.natelib.events.SessionEvent;
 	import com.mobsword.natelib.objects.Session;
 	
 	import flash.events.Event;
@@ -55,12 +56,26 @@ package com.mobsword.natelib.comm
 				writer.sendData(c);
 			}
 			queue.length = 0;
+
+			/*
+			*	dispatch Event for external Interface
+			*/
+/* 			var se:SessionEvent = new SessionEvent(SessionEvent.OPEN_SESSION);
+			se.session = session;
+			session.dispatchEvent(se); */
 		}
 		
 		private function onClose(event:Event):void
 		{
 			socket.removeEventListener(ProgressEvent.SOCKET_DATA, reader.onData);
 			session.removeEventListener(RadioEvent.OUTGOING_DATA, writer.onData);
+			
+			/*
+			*	dispatch Event for external Interface
+			*/
+/* 			var se:SessionEvent = new SessionEvent(SessionEvent.CLOSE_SESSION);
+			se.session = session;
+			session.dispatchEvent(se); */
 		}
 	}
 	
