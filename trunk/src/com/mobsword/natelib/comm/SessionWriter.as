@@ -27,7 +27,7 @@ package com.mobsword.natelib.comm
 
 		public	function sendData(m:Message):void
 		{
-			rid++;
+			m.rid = rid++;
 			socket.writeMultiByte(m.toString(), 'UTF-8');
 			socket.flush();
 		}

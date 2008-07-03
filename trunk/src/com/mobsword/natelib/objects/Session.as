@@ -18,6 +18,7 @@ package com.mobsword.natelib.objects
 	[Event(name = "s_userSession", 	type = "com.mobsword.natelib.events.SessionEvent")]
 	[Event(name = "m_typing", 		type = "com.mobsword.natelib.events.MessageEvent")]
 	[Event(name = "m_messege",		type = "com.mobsword.natelib.events.MessageEvent")]
+	[Event(name = "m_sent",			type = "com.mobsword.natelib.events.MessageEvent")]
 	public class Session extends EventDispatcher
 	{
 		public	var account	:Account;
@@ -25,6 +26,7 @@ package com.mobsword.natelib.objects
 		public	var conn	:SessionConnector;
 		public	var am		:AttendentManager;
 		public	var cm		:ConversationManager;
+		private var history	:Object;
 
 		public	function Session(a:Account, sd:SessionData)
 		{
@@ -33,6 +35,7 @@ package com.mobsword.natelib.objects
 			conn	= new SessionConnector(this);
 			am		= new AttendentManager(this);
 			cm		= new ConversationManager(this);
+			history = new Object();
 		}
 
 		public	function online():void
@@ -49,12 +52,22 @@ package com.mobsword.natelib.objects
 		{
 			var embed:Message = data.account.mm.genMSG(msg, font, color, type);
 			var mesg:Message = data.account.mm.genMESG(embed);
-			broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, mesg));
+			broadcast(new RadioEvent(RadioEvent.OUTGOING_DATA, mesg), true);
 		}
 		
-		public	function broadcast(event:RadioEvent):void
+		public	function broadcast(event:RadioEvent, record:Boolean = false):void
 		{
 			dispatchEvent(event);
+			if (record)
+				history[event.data.rid.toString()] = event;
+		}
+		
+		public	function AOD(id:String, flush:Boolean = true):RadioEvent
+		{
+			var e:RadioEvent = history[id] as RadioEvent;
+			if (flush)
+				history[id] = null;
+			return e;
 		}
 	}
 }

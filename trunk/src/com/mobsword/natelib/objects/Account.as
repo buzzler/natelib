@@ -42,7 +42,7 @@ package com.mobsword.natelib.objects
 	{
 		public	var data	:AccountData;
 		public	var radio	:Radio;
-		public	var conn	:AccountConnector;
+		private	var conn	:AccountConnector;
 		public	var am		:AccountManager;
 		public	var gm		:GroupManager;
 		public	var fm		:FriendManager;
@@ -101,6 +101,7 @@ package com.mobsword.natelib.objects
 		public	function disconnect():void
 		{
 			conn.close();
+			constructor();
 		}
 		
 		/**

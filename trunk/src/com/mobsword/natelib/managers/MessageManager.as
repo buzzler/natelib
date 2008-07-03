@@ -198,7 +198,7 @@ package com.mobsword.natelib.managers
 			var m:Message = new Message();
 			m.command	= Command.INVT;
 			m.isEmbed	= true;
-			m.param		= [account.data.email, host, port.toString, s];
+			m.param		= [account.data.email, host, port.toString(), s];
 			return m;
 		}
 
