@@ -81,8 +81,11 @@ package com.mobsword.natelib.managers
 			case 'N':
 				var f:Friend	= account.fm.getFriendById(m.param[3] as String);
 				g				= getGroupById(m.param[4] as String);
-				g.data.friends.push(f);
-				f.data.group	= g;
+				if (f != null)
+				{
+					g.data.friends.push(f);
+					f.data.group	= g;
+				}
 				break;
 			}
 			
