@@ -22,7 +22,8 @@ package com.mobsword.natelib.comm
 		{
 			try
 			{
-				socket.connect(host, port);
+				if (!socket.connected)
+					socket.connect(host, port);
 			}
 			catch (e:IOError)
 			{
@@ -38,7 +39,8 @@ package com.mobsword.natelib.comm
 		{
 			try
 			{
-				socket.close();
+				if (socket.connected)
+					socket.close();
 			}
 			catch (e:IOError)
 			{
