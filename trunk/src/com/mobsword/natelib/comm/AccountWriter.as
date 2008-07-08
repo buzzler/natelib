@@ -32,6 +32,7 @@ package com.mobsword.natelib.comm
 			m.rid = rid++;
 			socket.writeMultiByte(m.toString(), 'UTF-8');
 			socket.flush();
+			trace(m.toString());
 		}
 	}
 	
