@@ -1,4 +1,4 @@
-package com.mobsword.natelib.objects
+﻿package com.mobsword.natelib.objects
 {
 	import com.mobsword.natelib.comm.SessionConnector;
 	import com.mobsword.natelib.data.Message;
@@ -9,16 +9,20 @@ package com.mobsword.natelib.objects
 	
 	import flash.events.EventDispatcher;
 	
-	[Event(name = "incomingData", 	type = "com.mobsword.natelib.events.RadioEvent")]
-	[Event(name = "outgoingData", 	type = "com.mobsword.natelib.events.RadioEvent")]
-	[Event(name = "s_openSession", 	type = "com.mobsword.natelib.events.SessionEvent")]
-	[Event(name = "s_closeSession", type = "com.mobsword.natelib.events.SessionEvent")]
-	[Event(name = "s_joinSession", 	type = "com.mobsword.natelib.events.SessionEvent")]
-	[Event(name = "s_quitSession", 	type = "com.mobsword.natelib.events.SessionEvent")]
-	[Event(name = "s_userSession", 	type = "com.mobsword.natelib.events.SessionEvent")]
-	[Event(name = "m_typing", 		type = "com.mobsword.natelib.events.MessageEvent")]
-	[Event(name = "m_messege",		type = "com.mobsword.natelib.events.MessageEvent")]
-	[Event(name = "m_sent",			type = "com.mobsword.natelib.events.MessageEvent")]
+	/**
+	 * 세션을 나타내는 클래스.
+	 * 대화창의 모든 정보를 세션클래스에서 담고있다.
+	 */
+	[Event(name = "INCOMING_DATA", 	type = "com.mobsword.natelib.events.RadioEvent")]
+	[Event(name = "OUTGOING_DATA", 	type = "com.mobsword.natelib.events.RadioEvent")]
+	[Event(name = "OPEN_SESSION", 	type = "com.mobsword.natelib.events.SessionEvent")]
+	[Event(name = "CLOSE_SESSION",	type = "com.mobsword.natelib.events.SessionEvent")]
+	[Event(name = "JOIN_SESSION", 	type = "com.mobsword.natelib.events.SessionEvent")]
+	[Event(name = "QUIT_SESSION", 	type = "com.mobsword.natelib.events.SessionEvent")]
+	[Event(name = "USER_SESSION", 	type = "com.mobsword.natelib.events.SessionEvent")]
+	[Event(name = "TYPING", 		type = "com.mobsword.natelib.events.MessageEvent")]
+	[Event(name = "MESSAGE",		type = "com.mobsword.natelib.events.MessageEvent")]
+	[Event(name = "SENT",			type = "com.mobsword.natelib.events.MessageEvent")]
 	public class Session extends EventDispatcher
 	{
 		public	var account	:Account;
@@ -28,6 +32,14 @@ package com.mobsword.natelib.objects
 		public	var cm		:ConversationManager;
 		private var history	:Object;
 
+		/**
+		 * 생성자 함수.
+		 * 생성이 되었다고 세션에 모두 접속하진 않는다. 기본적으로 offline상태.
+		 * 세션에 접속하기 위해선 online 함수를 호출한다.
+		 * 
+		 * @param	a	사용자 계정 객체
+		 * @param	sd	세션 정보 객체
+		 */
 		public	function Session(a:Account, sd:SessionData)
 		{
 			account	= a;
@@ -38,16 +50,29 @@ package com.mobsword.natelib.objects
 			history = new Object();
 		}
 
+		/**
+		 * 세션에 접속한다.
+		 */
 		public	function online():void
 		{
 			conn.open(data.host, data.port);
 		}
 		
+		/**
+		 * 세션의 연결을 끊는다.
+		 */
 		public	function offline():void
 		{
 			conn.close();
 		}
 
+		/**
+		 * 세션의 모든 참석자에게 메시지를 보낸다.
+		 * @param	msg		보낼 내용
+		 * @param	font	폰트
+		 * @param	color	색상
+		 * @param	type	기울임,굵게
+		 */
 		public	function send(msg:String, font:String = '굴림', color:String = '0', type:String = ''):void
 		{
 			var embed:Message = data.account.mm.genMSG(msg, font, color, type);
