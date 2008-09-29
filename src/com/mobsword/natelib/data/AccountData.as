@@ -1,4 +1,4 @@
-/**
+﻿/**
 * ...
 * @author Default
 * @version 0.1
@@ -8,15 +8,15 @@ package com.mobsword.natelib.data
 {
 	public class AccountData
 	{
-		public	var email	:String;
-		public	var password:String;
-		public	var state	:String;
-		public	var t_state	:String;
-		public	var nick	:String;
-		public	var name	:String;
-		public	var ticket	:String;
-		public	var groups	:Array;
-		public	var friends	:Array;
+		public	var email	:String;	//사용자 계정
+		public	var password:String;	//계정 비밀번호
+		public	var state	:String;	//계정의 상태
+		public	var t_state	:String;	//접속시 초기 상태
+		public	var nick	:String;	//별명
+		public	var name	:String;	//이름
+		public	var ticket	:String;	//문자메시지등 다른 서비스를 이용하기위한 티켓
+		public	var groups	:Array;		//대화상대 그룹들
+		public	var friends	:Array;		//대화상대들
 		
 		public	function AccountData():void
 		{

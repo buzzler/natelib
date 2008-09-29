@@ -25,18 +25,18 @@ package com.mobsword.natelib.objects
 	 * 사용자가 접속하고자 하는 계정을 나타낸다.
 	 * 친구, 그룹, 계정 관리를 이 클래스를 통해서 할 수 있다.
 	 */
-	[Event(name = "a_stateChange",	type = "com.mobsword.natelib.events.AccountEvent")]
-	[Event(name = "a_nickChange",	type = "com.mobsword.natelib.events.AccountEvent")]
-	[Event(name = "f_newFriend",	type = "com.mobsword.natelib.events.FriendEvent")]
-	[Event(name = "f_nickChange",	type = "com.mobsword.natelib.events.FriendEvent")]
-	[Event(name = "f_stateChange",	type = "com.mobsword.natelib.events.FriendEvent")]
-	[Event(name = "f_listChange",	type = "com.mobsword.natelib.events.FriendEvent")]
-	[Event(name = "f_groupChange",	type = "com.mobsword.natelib.events.FriendEvent")]
-	[Event(name = "g_newGroup",		type = "com.mobsword.natelib.events.GroupEvent")]
-	[Event(name = "g_renameGroup",	type = "com.mobsword.natelib.events.GroupEvent")]
-	[Event(name = "g_removeGroup",	type = "com.mobsword.natelib.events.GroupEvent")]
-	[Event(name = "s_newSession",	type = "com.mobsword.natelib.events.SessionEvent")]
-	[Event(name = "s_inviteSession",type = "com.mobsword.natelib.events.SessionEvent")]
+	[Event(name = "STATE_CHANGE",	type = "com.mobsword.natelib.events.AccountEvent")]
+	[Event(name = "NICK_CHANGE",	type = "com.mobsword.natelib.events.AccountEvent")]
+	[Event(name = "NEW_FRIEND",		type = "com.mobsword.natelib.events.FriendEvent")]
+	[Event(name = "NICK_CHANGE",	type = "com.mobsword.natelib.events.FriendEvent")]
+	[Event(name = "STATE_CHANGE",	type = "com.mobsword.natelib.events.FriendEvent")]
+	[Event(name = "LIST_CHANGE",	type = "com.mobsword.natelib.events.FriendEvent")]
+	[Event(name = "GROUP_CHANGE",	type = "com.mobsword.natelib.events.FriendEvent")]
+	[Event(name = "NEW_GROUP",		type = "com.mobsword.natelib.events.GroupEvent")]
+	[Event(name = "RENAME_GROUP",	type = "com.mobsword.natelib.events.GroupEvent")]
+	[Event(name = "REMOVE_GROUP",	type = "com.mobsword.natelib.events.GroupEvent")]
+	[Event(name = "NEW_SESSION",	type = "com.mobsword.natelib.events.SessionEvent")]
+	[Event(name = "INVITE_SESSION",	type = "com.mobsword.natelib.events.SessionEvent")]
 	
 	public class Account extends EventDispatcher
 	{
