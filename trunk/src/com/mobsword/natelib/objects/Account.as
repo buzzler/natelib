@@ -20,11 +20,6 @@ package com.mobsword.natelib.objects
 	
 	import flash.events.EventDispatcher;
 
-	/**
-	 * 사용자 계정 클래스이다.
-	 * 사용자가 접속하고자 하는 계정을 나타낸다.
-	 * 친구, 그룹, 계정 관리를 이 클래스를 통해서 할 수 있다.
-	 */
 	[Event(name = "STATE_CHANGE",	type = "com.mobsword.natelib.events.AccountEvent")]
 	[Event(name = "NICK_CHANGE",	type = "com.mobsword.natelib.events.AccountEvent")]
 	[Event(name = "NEW_FRIEND",		type = "com.mobsword.natelib.events.FriendEvent")]
@@ -37,7 +32,12 @@ package com.mobsword.natelib.objects
 	[Event(name = "REMOVE_GROUP",	type = "com.mobsword.natelib.events.GroupEvent")]
 	[Event(name = "NEW_SESSION",	type = "com.mobsword.natelib.events.SessionEvent")]
 	[Event(name = "INVITE_SESSION",	type = "com.mobsword.natelib.events.SessionEvent")]
-	
+
+	/**
+	 * 사용자 계정 클래스이다.
+	 * 사용자가 접속하고자 하는 계정을 나타낸다.
+	 * 친구, 그룹, 계정 관리를 이 클래스를 통해서 할 수 있다.
+	 */
 	public class Account extends EventDispatcher
 	{
 		public	var data	:AccountData;
