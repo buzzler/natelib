@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" creationComplete="init()">
+	<mx:Script>
+		<![CDATA[
+import com.mobsword.natelib.constants.AccountState;
+import com.mobsword.natelib.objects.Account;
+
+		public function init():void
+		{
+			var a:Account = new Account();
+			
+			a.online('buzzler@hotmail.com', 'quick573310', AccountState.ONLINE);
+			this.console.text = 'hello world';
+		}
+		]]>
+	</mx:Script>
+	<mx:TextArea width="100%" height="100%" id="console" fontSize="12"/>
+</mx:Application>
