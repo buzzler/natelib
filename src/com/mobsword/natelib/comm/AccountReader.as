@@ -7,6 +7,7 @@ package com.mobsword.natelib.comm
 	import flash.events.Event;
 	import flash.events.ProgressEvent;
 	import flash.net.Socket;
+	import flash.utils.ByteArray;
 	/**
 	* ...
 	* @author Default
@@ -41,6 +42,7 @@ package com.mobsword.natelib.comm
 				case Command.CTOC:
 				case Command.INVT:
 				case Command.MVBG:
+				case Command.GWBP:
 					onPayload();
 					break;
 				default:
@@ -85,12 +87,17 @@ package com.mobsword.natelib.comm
 			var m:Message	= getMessage();
 			var start:int	= buffer.indexOf('\r\n') + 2;
 			var length:int	= parseInt(m.param[m.param.length - 1] as String);
-			if (buffer.length < (start + length))
+			
+			var bytes:ByteArray = new ByteArray();
+			bytes.writeUTFBytes(buffer.substr(start));
+			bytes.position = 0;
+			if (bytes.length < length)
 				return;
-			m.data			= buffer.substr(start, length);
+			
+			m.data			= bytes.readUTFBytes(length);
 			m.isBinary		= true;
 			radio.broadcast(new RadioEvent(RadioEvent.INCOMING_DATA, m));
-			flushMessage(length);
+			flushMessage(m.data.length);
 		}
 	}
 }

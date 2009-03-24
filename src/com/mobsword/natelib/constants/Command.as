@@ -211,6 +211,11 @@
 		 * 세션 종료
 		 */
 		public	static const QUIT	:String = 'QUIT';
+		
+		/**
+		 * 문자 대화
+		 */
+		public	static const GWBP	:String = 'GWBP';
 	}
 	
 }
