@@ -17,9 +17,10 @@ package com.mobsword.natelib.objects
 	import com.mobsword.natelib.managers.GroupManager;
 	import com.mobsword.natelib.managers.MessageManager;
 	import com.mobsword.natelib.managers.SessionManager;
+	import com.mobsword.natelib.managers.SmsManager;
 	
 	import flash.events.EventDispatcher;
-
+/*
 	[Event(name = "STATE_CHANGE",	type = "com.mobsword.natelib.events.AccountEvent")]
 	[Event(name = "NICK_CHANGE",	type = "com.mobsword.natelib.events.AccountEvent")]
 	[Event(name = "NEW_FRIEND",		type = "com.mobsword.natelib.events.FriendEvent")]
@@ -32,7 +33,8 @@ package com.mobsword.natelib.objects
 	[Event(name = "REMOVE_GROUP",	type = "com.mobsword.natelib.events.GroupEvent")]
 	[Event(name = "NEW_SESSION",	type = "com.mobsword.natelib.events.SessionEvent")]
 	[Event(name = "INVITE_SESSION",	type = "com.mobsword.natelib.events.SessionEvent")]
-
+	[Event(name = "NEW_MESSAGE",	type = "com.mobsword.natelib.events.SmsEvent")]
+*/
 	/**
 	 * 사용자 계정 클래스이다.
 	 * 사용자가 접속하고자 하는 계정을 나타낸다.
@@ -48,6 +50,7 @@ package com.mobsword.natelib.objects
 		public	var fm		:FriendManager;
 		public	var sm		:SessionManager;
 		public	var mm		:MessageManager;
+		public	var sms		:SmsManager;
 
 		/**
 		 * 생성자
@@ -69,6 +72,7 @@ package com.mobsword.natelib.objects
 			fm		= new FriendManager(this);
 			sm		= new SessionManager(this);
 			mm		= new MessageManager(this);
+			sms		= new SmsManager(this);
 		}
 		
 		private function listener():void
