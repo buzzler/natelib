@@ -14,6 +14,7 @@ package com.mobsword.natelib.data
 		public	var t_state	:String;	//접속시 초기 상태
 		public	var nick	:String;	//별명
 		public	var name	:String;	//이름
+		public	var mobile	:String;	//휴대전화번호
 		public	var ticket	:String;	//문자메시지등 다른 서비스를 이용하기위한 티켓
 		public	var groups	:Array;		//대화상대 그룹들
 		public	var friends	:Array;		//대화상대들

@@ -41,6 +41,7 @@ package com.mobsword.natelib.managers {
 		{
 			account.data.name	= Codec.decode(m.param[1] as String);
 			account.data.nick	= Codec.decode(m.param[2] as String);
+			account.data.mobile	= m.param[3] as String;
 			account.data.ticket	= m.param[5] as String;
 		}
 		
